@@ -4,6 +4,7 @@ import imgResumePic from "../imports/resume-ss.png";
 import imgPortfolioPic from "../imports/Frame11/1aba2f9758ed7a034c2ea1d51dba30aca5f6a6dc.png";
 import RomanceSystemPic from "../imports/romancesystem-ss.png";
 import PathAnuPic from "../imports/pathanu-ss.png";
+import OSOgif from "../imports/oso-gif.gif"
 import CMYKingdomPic from "../imports/CMYKingdom-ss.png";
 import imgContactMePic from "../imports/haidog-ss.png";
 import gradientGreen from "../imports/Gradientgreen.gif";
@@ -25,6 +26,7 @@ const SITE_THEME = {
   navbarBackground: "hsl(48, 89%, 94%)",
   greetingBackground: "hsl(48, 89%, 94%)",
   fontColor: "#0b0b0b",
+  fontColor2: "hsl(48, 89%, 94%)",
 };
 
 
@@ -195,12 +197,23 @@ function PortfolioPage() {
   ]
     
     },
+    {
+      title: "Ocean Site One, Environmental Awareness VR Experience",
+      description:
+        "A VR minigame where the player must deliver and perserve fish eggs againts predators. Set in the shores of Santa Barbara where oil rigs are present and the sea life coexists with these structures.",
+      image: OSOgif,
+      links: [
+        { label: "website", href: "https://laes.calpoly.edu/OSOprojects",
+          isDownload: false // Add this flag
+         },
+      ],
+    }
   ];
 
   return (
     <PageShell
       eyebrow="portfolio"
-      title="selected work"
+      title={<span style={{ color: SITE_THEME.fontColor2 }}>selected work</span>}
       action={<p className="max-w-sm text-sm text-slate-500">Contact me if you have any questions about these projects!</p>}
     >
       <div className="grid gap-6 lg:grid-cols-3">
@@ -236,7 +249,7 @@ function ResumePage() {
   return (
     <PageShell
       eyebrow="resume"
-      title="resume"
+      title={<span style={{ color: SITE_THEME.fontColor2 }}>resume</span>}
       action={<p className="max-w-sm text-sm text-slate-500">Make the preview and download action the focus here.</p>}
     >
       <div className="mx-auto grid max-w-4xl gap-6">
@@ -297,7 +310,7 @@ function ContactPage() {
   return (
     <PageShell
       eyebrow="contact me"
-      title="let’s talk :D"
+      title={<span style= {{color: SITE_THEME.fontColor2}}>let's talk</span>}
       action={<p className="max-w-sm text-sm text-slate-500">Use the form or email me directly at {CONTACT_EMAIL}.</p>}
     >
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
