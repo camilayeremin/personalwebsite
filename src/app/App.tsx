@@ -248,9 +248,9 @@ function PortfolioPage() {
 function ResumePage() {
   return (
     <PageShell
-      eyebrow="resume"
+      //eyebrow="resume"
       title={<span style={{ color: SITE_THEME.fontColor2 }}>resume</span>}
-      action={<p className="max-w-sm text-sm text-slate-500">Make the preview and download action the focus here.</p>}
+      action={<p className="max-w-sm text-sm text-slate-500"> :D</p>}
     >
       <div className="mx-auto grid max-w-4xl gap-6">
         <SurfaceCard className="overflow-hidden p-0">
@@ -310,7 +310,7 @@ function ContactPage() {
   return (
     <PageShell
       eyebrow="contact me"
-      title={<span style= {{color: SITE_THEME.fontColor2}}>let's talk</span>}
+      title={<span style= {{color: SITE_THEME.fontColor2}}>let's talk :D</span>}
       action={<p className="max-w-sm text-sm text-slate-500">Use the form or email me directly at {CONTACT_EMAIL}.</p>}
     >
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -328,15 +328,13 @@ function ContactPage() {
             </div>
             <label className="grid gap-2 text-sm font-medium text-slate-700">
               message
-              <textarea name="message" className="min-h-[180px] rounded-3xl border border-slate-200 bg-white px-4 py-3 text-slate-950 outline-none transition focus:border-slate-400" placeholder="Tell me what you need, what you're building, or how you'd like to connect." />
+              <textarea name="message" className="min-h-[180px] rounded-3xl border border-slate-200 bg-white px-4 py-3 text-slate-950 outline-none transition focus:border-slate-400" placeholder="say whatever!" />
             </label>
             <div className="flex flex-wrap gap-3">
               <button type="submit" className="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white">
                 send message
               </button>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-700">
-                email me
-              </a>
+              
             </div>
           </form>
         </SurfaceCard>
