@@ -267,7 +267,7 @@ function ResumePage() {
             <div className="flex flex-col justify-center gap-6 p-6 md:p-8">
               <div className="grid gap-3">
                 <p className="font-['Camilafont'] text-4xl leading-tight text-slate-950">resume preview</p>
-                <p className="text-slate-600">Drop in the PDF, a detailed image, or a live embedded version later.</p>
+                <p className="text-slate-600"></p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <a href={RESUME_DOWNLOAD_URL} download className="rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white">
