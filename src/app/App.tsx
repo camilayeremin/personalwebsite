@@ -130,19 +130,51 @@ function SurfaceCard({ children, className = "", style }: { children: React.Reac
 function HomePage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
   const catModelUrl = new URL('../assets/cat02.fbx', import.meta.url).href
 
-  return (
-    <div className=" mx-auto grid max-w-2x2 gap-8">
-      <SurfaceCard className="relative overflow-hidden p-8 md:p-12" style={{ background: SITE_THEME.greetingBackground }}>
-        <div className="relative grid gap-6 text-center">
-          <h2 className="font-['Camilafont'] text-5xl leading-[0.95] text-slate-950 md:text-7xl">hello! my name is camila.</h2>
-          <p className="mx-auto max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-            welcome to my website! I love technical art, working in real time environments, and tool creation :)
-          </p>
-        </div>
-      </SurfaceCard>
-      <ThreeModelWrapper modelUrl={catModelUrl} />  
-    </div>   
-  );
+ return (
+  <div className="mx-auto grid grid-cols-1 md:grid-cols-2 max-w-2x2 gap-8 items-start"> 
+    
+    {/* LEFT COLUMN: Groups the text card and the 3D model together */}
+    <div className="grid grid-cols-1 gap-8">
+      
+      {/* First Card: Greeting */}
+      <SurfaceCard className="relative overflow-hidden p-10" style={{ background: SITE_THEME.greetingBackground }}> 
+        <div className="relative grid gap-6 text-center"> 
+          <h2 className="font-['Camilafont'] text-5xl leading-[0.95] text-slate-950 md:text-6xl">hello! my name is camila.</h2> 
+          <p className="mx-auto max-w-2xl text-lg leading-8 text-slate-600 md:text-xl"> 
+            welcome to my website! I love technical art, working in real time environments, and tool creation :) 
+          </p> 
+        </div> 
+      </SurfaceCard> 
+
+      {/* 3D Cat Model: Positioned perfectly below the left greeting card */}
+      <ThreeModelWrapper modelUrl={catModelUrl} /> 
+      
+    </div>
+
+    {/* RIGHT COLUMN: Contains the Demo Reel video card */}
+    <SurfaceCard className="relative overflow-hidden p-10" style={{ background: SITE_THEME.greetingBackground }}> 
+      <div className="relative grid gap-6 text-center"> 
+        <h2 className="font-['Camilafont'] text-5xl leading-[0.95] text-slate-950 md:text-6xl"> demo reel :D</h2> 
+        
+        {/* Fixed: Removed h-full so aspect-video can render the 16:9 box correctly */}
+        <div className="w-full aspect-video rounded-lg overflow-hidden shadow-inner"> 
+          <iframe 
+            className="w-full h-full border-0" 
+            src="https://youtube.com/embed/ffupK-9i2tI" 
+            title="2026 demo reel" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowFullScreen 
+          /> 
+        </div> 
+      </div> 
+    </SurfaceCard>
+
+  </div> 
+);
+
+
+  
+    
 }
 
 function PortfolioPage() {
