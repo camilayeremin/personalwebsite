@@ -140,7 +140,7 @@ function HomePage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
       <SurfaceCard className="relative overflow-hidden p-10" style={{ background: SITE_THEME.greetingBackground }}> 
         <div className="relative grid gap-6 text-center"> 
           <h2 className="font-['Camilafont'] text-[clamp(2.9rem,3.8vw,5.75rem)] leading-[0.95] text-slate-950">hello! my name is camila.</h2> 
-          <p className="mx-auto max-w-2xl text-[clamp(1.05rem,1.1vw,1.25rem)] leading-8 text-slate-600"> 
+          <p className="mx-auto max-w-2xl text-[clamp(1.25rem,1.2vw,1.50rem)] leading-8 text-slate-600"> 
             welcome to my website! I love technical art, working in real time environments, and tool creation :) 
           </p> 
         </div> 
