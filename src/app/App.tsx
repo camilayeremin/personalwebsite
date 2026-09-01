@@ -89,7 +89,7 @@ function PageShell({
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="grid gap-2">
           <p className="font-['Camilafont'] text-sm uppercase tracking-[0.35em] text-slate-500">{eyebrow}</p>
-          <h1 className="font-['Camilafont'] text-5xl leading-none text-slate-950 md:text-7xl">{title}</h1>
+          <h1 className="font-['Camilafont'] text-[clamp(3rem,4vw,6rem)] leading-none text-slate-950 2xl:text-[clamp(3.75rem,3vw,7rem)]">{title}</h1>
         </div>
         {action}
       </div>
@@ -131,7 +131,7 @@ function HomePage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
   const catModelUrl = new URL('../assets/cat02.fbx', import.meta.url).href
 
  return (
-  <div className="mx-auto grid grid-cols-1 md:grid-cols-2 max-w-2x2 gap-8 items-start"> 
+  <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-8 md:grid-cols-2 2xl:max-w-7xl"> 
     
     {/* LEFT COLUMN: Groups the text card and the 3D model together */}
     <div className="grid grid-cols-1 gap-8">
@@ -139,8 +139,8 @@ function HomePage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
       {/* First Card: Greeting */}
       <SurfaceCard className="relative overflow-hidden p-10" style={{ background: SITE_THEME.greetingBackground }}> 
         <div className="relative grid gap-6 text-center"> 
-          <h2 className="font-['Camilafont'] text-5xl leading-[0.95] text-slate-950 md:text-6xl">hello! my name is camila.</h2> 
-          <p className="mx-auto max-w-2xl text-lg leading-8 text-slate-600 md:text-xl"> 
+          <h2 className="font-['Camilafont'] text-[clamp(2.9rem,3.8vw,5.75rem)] leading-[0.95] text-slate-950">hello! my name is camila.</h2> 
+          <p className="mx-auto max-w-2xl text-[clamp(1.05rem,1.1vw,1.25rem)] leading-8 text-slate-600"> 
             welcome to my website! I love technical art, working in real time environments, and tool creation :) 
           </p> 
         </div> 
@@ -154,13 +154,13 @@ function HomePage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
     {/* RIGHT COLUMN: Contains the Demo Reel video card */}
     <SurfaceCard className="relative overflow-hidden p-10" style={{ background: SITE_THEME.greetingBackground }}> 
       <div className="relative grid gap-6 text-center"> 
-        <h2 className="font-['Camilafont'] text-5xl leading-[0.95] text-slate-950 md:text-6xl"> demo reel :D</h2> 
+        <h2 className="font-['Camilafont'] text-[clamp(2.9rem,3.8vw,5.75rem)] leading-[0.95] text-slate-950"> demo reel :D</h2> 
         
         {/* Fixed: Removed h-full so aspect-video can render the 16:9 box correctly */}
         <div className="w-full aspect-video rounded-lg overflow-hidden shadow-inner"> 
           <iframe 
             className="w-full h-full border-0" 
-            src="https://youtube.com/embed/ffupK-9i2tI" 
+            src="https://youtube.com/embed/860KD7QEJik" 
             title="2026 demo reel" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             allowFullScreen 
@@ -250,12 +250,12 @@ function PortfolioPage() {
     >
       <div className="grid gap-6 lg:grid-cols-3">
         {projects.map((project) => (
-          <SurfaceCard key={project.title} className="grid gap-5">
+          <SurfaceCard key={project.title} className="grid gap-5 2xl:p-8">
             <div className="aspect-[4/3] overflow-hidden rounded-[1.4rem] bg-slate-100">
               <img alt="portfolio preview" className="h-full w-full object-cover" src={project.image} />
             </div>
             <div className="grid gap-3">
-              <h2 className="font-['Camilafont'] text-3xl leading-tight text-slate-950">{project.title}</h2>
+              <h2 className="font-['Camilafont'] text-[clamp(1.75rem,1.6vw,2.35rem)] leading-tight text-slate-950">{project.title}</h2>
               <p className="text-slate-600">{project.description}</p>
               <div className="flex flex-wrap gap-2 pt-1">
                 {project.links.map((link) => (
@@ -298,7 +298,7 @@ function ResumePage() {
             </div>
             <div className="flex flex-col justify-center gap-6 p-6 md:p-8">
               <div className="grid gap-3">
-                <p className="font-['Camilafont'] text-4xl leading-tight text-slate-950">resume preview</p>
+                  <p className="font-['Camilafont'] text-[clamp(2rem,2vw,2.75rem)] leading-tight text-slate-950">resume preview</p>
                 <p className="text-slate-600"></p>
               </div>
               <div className="flex flex-wrap gap-3">
