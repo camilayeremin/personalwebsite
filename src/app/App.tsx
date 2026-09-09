@@ -160,7 +160,7 @@ function HomePage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
         <div className="w-full aspect-video rounded-lg overflow-hidden shadow-inner"> 
           <iframe 
             className="w-full h-full border-0" 
-            src="https://youtube.com/embed/860KD7QEJik" 
+            src="https://youtube.com/embed/v9ytFpMBHS4" 
             title="2026 demo reel" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             allowFullScreen 
