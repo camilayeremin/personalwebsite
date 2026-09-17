@@ -187,7 +187,7 @@ function PortfolioPage() {
     {
       title: "Path of Anu, Zodiac Inspired VR Puzzle Solving Experience",
       description:
-        "A VR experience where you cast spells in real time using hand gestures. Path of Anu is a VR spellcasting experience in which players draw magical sigils in real time using XR controls, designed for the Meta Quest 3 and Meta Quest 3 controllers.",
+        "Unity VR experience where you cast spells in real time using hand gestures. Path of Anu is a VR spellcasting experience in which players draw magical sigils in real time using XR controls, designed for the Meta Quest 3 and Meta Quest 3 controllers.",
       image: PathAnuPic,
       links: [
         { label: "github", href: "https://github.com/BrennanAndruss/PathOfAnu",
