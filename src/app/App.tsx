@@ -101,9 +101,9 @@ const PROJECTS: Project[] = [
     detailDescription:
       "Path of Anu is a zodiac-inspired VR puzzle-solving experience for Meta Quest 3 built with Unity. Players draw magical sigils with XR controls to cast corresponding spells and solve the world’s puzzles.",
     // Gallery images: add paths such as ["/projects/path-of-anu-1.png", "/projects/path-of-anu-2.png"].
-    detailImages: ["../public/pathofanu1.png",
-      "../public/pathofanu2.png",
-      "../public/pathofanu3.png"
+    detailImages: ["/pathofanu1.png",
+      "/pathofanu2.png",
+      "/pathofanu3.png"
 
     ],
     notes: {
@@ -132,9 +132,9 @@ const PROJECTS: Project[] = [
       "Ocean Site One is an environmental awareness VR experience set on the Santa Barbara coast. Players protect and deliver fish eggs while navigating predators and the shared space between marine life and oil rigs.",
     // Gallery images: add paths such as ["/projects/ocean-site-one-1.png", "/projects/ocean-site-one-2.png"].
     detailImages: [
-     "../public/osopicture1.png",
-     "../public/osopicture2.jpg",
-     "../public/osopicture3.png"
+     "/osopicture1.png",
+     "/osopicture2.jpg",
+     "/osopicture3.png"
      
     ],
     notes: {
