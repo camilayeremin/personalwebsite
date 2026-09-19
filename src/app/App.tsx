@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
 import imgResumePic from "../imports/resume-ss.png";
 import imgPortfolioPic from "../imports/Frame11/1aba2f9758ed7a034c2ea1d51dba30aca5f6a6dc.png";
 import RomanceSystemPic from "../imports/romancesystem-ss.png";
 import PathAnuPic from "../imports/pathanu-ss.png";
-import OSOgif from "../imports/oso-gif.gif"
+import OSOgif from "../imports/oso-gif.png"
 import CMYKingdomPic from "../imports/CMYKingdom-ss.png";
-import imgContactMePic from "../imports/haidog-ss.png";
-import gradientGreen from "../imports/Gradientgreen.gif";
+import imgContactMePic from "../imports/optiontwoHeader.jpeg";
+import gradientGreen from "../imports/boringwesbiteback.jpg";
 import ThreeModelWrapper from './components/ThreeModel'
 
 
 
-type PageId = "/" | "/portfolio" | "/resume" | "/contact";
+type ProjectPageId = `/project/${string}`;
+type PageId = "/" | "/portfolio" | "/resume" | "/contact" | ProjectPageId;
 type PortfolioLink = { label: string; href: string; isDownload: boolean }; // Add the isDownload property
 
 const CONTACT_EMAIL = "yereminsasha@gmail.com";
@@ -37,10 +39,155 @@ const NAV_ITEMS: Array<{ href: PageId; label: string }> = [
   { href: "/contact", label: "contact me" },
 ];
 
+type Project = {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  links: PortfolioLink[];
+  previewUrl?: string;
+  learnMoreUrl?: string;
+  detailDescription: string;
+  detailImages: string[];
+  notes: {
+    role: string;
+    problems: string[];
+    solutions: string[];
+  };
+};
+
+// EDIT PROJECT CONTENT HERE: replace the text and imported image values below.
+// For simple file paths, put images in public/projects and use paths like "/projects/my-image.png".
+// Add up to three gallery paths to detailImages for the project detail page.
+const PROJECTS: Project[] = [
+  {
+    slug: "cmykingdom",
+    title: "CMYKingdom, Custom OpenGL Engine for a 3d Platformer Game",
+    description:
+      "OpenGL 3D platformer game where the main quest is to explore the world to collect cyan, magenta, and yellow crystals scattered throughout the land to restore color to the kingdom!",
+    // Cover image: replace CMYKingdomPic with a path such as "/projects/cmykingdom-cover.png".
+    image: CMYKingdomPic,
+    links: [],
+    learnMoreUrl: "https://brennanandruss.github.io/CMYKingdom/",
+    detailDescription:
+      "CMYKingdom is a 3D platformer built around a custom OpenGL engine. Players explore a colorful world, collect cyan, magenta, and yellow crystals, and restore color to the kingdom.",
+    // Gallery images: add paths such as ["/projects/cmykingdom-1.png", "/projects/cmykingdom-2.png"].
+    detailImages: [
+      
+    ],
+    notes: {
+      role: "Engine programming, gameplay systems, 3D environment work, and platformer level design.",
+      problems: [
+        "The custom engine needed to support a colorful 3D world while keeping platforming movement responsive.",
+        "The crystal-collection quest needed clear visual feedback for players as they restored color to the kingdom.",
+      ],
+      solutions: [
+        "Built reusable OpenGL systems for rendering, scene management, and gameplay interactions.",
+        "Used the cyan, magenta, and yellow crystal objectives to connect exploration, progression, and the game's visual identity.",
+      ],
+    },
+  },
+  {
+    slug: "path-of-anu",
+    title: "Path of Anu, Zodiac Inspired VR Puzzle Solving Experience",
+    description:
+      "Unity VR experience where you cast spells in real time using hand gestures. Path of Anu is a VR spellcasting experience in which players draw magical sigils in real time using XR controls, designed for the Meta Quest 3 and Meta Quest 3 controllers.",
+    // Cover image: replace PathAnuPic with a path such as "/projects/path-of-anu-cover.png".
+    image: PathAnuPic,
+    links: [
+      { label: "github", href: "https://github.com/BrennanAndruss/PathOfAnu", isDownload: false },
+      { label: "video", href: "https://youtu.be/PUcehc885bM", isDownload: false },
+    ],
+    detailDescription:
+      "Path of Anu is a zodiac-inspired VR puzzle-solving experience for Meta Quest 3 built with Unity. Players draw magical sigils with XR controls to cast corresponding spells and solve the world’s puzzles.",
+    // Gallery images: add paths such as ["/projects/path-of-anu-1.png", "/projects/path-of-anu-2.png"].
+    detailImages: ["../public/pathofanu1.png",
+      "../public/pathofanu2.png",
+      "../public/pathofanu3.png"
+
+    ],
+    notes: {
+      role: "Environment design, modeling, VFX/shaders, model animation, and C# scripting using an object-oriented spell system.",
+      problems: [
+        "Some shaders weren't working on the headset.",
+        "Players would often get clipped while moving on mountainous terrain.",
+        "Particle systems were too computationally expensive.",
+      ],
+      solutions: [
+        "Simplified complex shaders by switching from alpha blend to depth-based opacity textures so the GPU doesn't sort from back to front.",
+        "Made a custom script to keep the player camera rig at a consistent height and upscaled the terrain resolution for smoother movement.",
+        "Fixed particle systems that used integer data types for movement calculations to floats.",
+      ],
+    },
+  },
+  {
+    slug: "ocean-site-one",
+    title: "Ocean Site One, Environmental Awareness VR Experience",
+    description:
+      "A VR minigame where the player must deliver and preserve fish eggs against predators. Set on the shores of Santa Barbara where oil rigs are present and sea life coexists with these structures.",
+    // Cover image: replace OSOgif with a path such as "/projects/ocean-site-one-cover.gif".
+    image: OSOgif,
+    links: [{ label: "website", href: "https://laes.calpoly.edu/OSOprojects", isDownload: false }],
+    detailDescription:
+      "Ocean Site One is an environmental awareness VR experience set on the Santa Barbara coast. Players protect and deliver fish eggs while navigating predators and the shared space between marine life and oil rigs.",
+    // Gallery images: add paths such as ["/projects/ocean-site-one-1.png", "/projects/ocean-site-one-2.png"].
+    detailImages: [
+     "../public/osopicture1.png",
+     "../public/osopicture2.jpg",
+     "../public/osopicture3.png"
+     
+    ],
+    notes: {
+      role: "Contributed to animation, VFX, UI layout and composition (syncronized them with game states), and modeling.",
+      problems: [
+        "The composition of the UI was not working with the headset.",
+        "Unity would not accept deformer animations from Maya.",
+      ],
+      solutions: [
+        "Subdividing canvases from stagnant and changing UI resulted in less draw calls, changing UI to screne space vs. world space to keep it facing user when needed, and only made necessary components a raycast target to prevent overhead.",
+        "Used blend shapes instead! Though I know now that Unity has a nifty deformers package...",
+      ],
+    },
+  },
+  {
+    slug: "slome-npc-system",
+    title: "Romance Context-Driven NPC system (using Utility AI and PAD Emotional Model)",
+    description:
+      "NPC interaction system integrating Utility AI and a PAD emotional model, powered by Unity scriptable objects that hold npc-player data, curves that represent action desirability, and hand-authored system that takes npc history with player into account.",
+    // Cover image: replace RomanceSystemPic with a path such as "/projects/slome-cover.png".
+    image: RomanceSystemPic,
+    previewUrl: PAPER_DOWNLOAD_URL,
+    links: [
+      { label: "paper", href: PAPER_DOWNLOAD_URL, isDownload: true },
+      { label: "website", href: "https://digitalcommons.calpoly.edu/ceng_surp/155/", isDownload: false },
+      { label: "github", href: "https://github.com/agrow/slome", isDownload: false },
+    ],
+    detailDescription:
+      "SLOme is a research-driven NPC interaction system that combines Utility AI, a PAD emotional model, and ScriptableObjects for personality and love-language data. It was designed to support more emotionally nuanced NPC interactions and player choices.",
+    // Gallery images: add paths such as ["/projects/slome-1.png", "/projects/slome-2.png"].
+    detailImages: [],
+    notes: {
+      role: "Utility AI design, PAD emotional modeling, ScriptableObject architecture, and C# systems programming.",
+      problems: [
+        "NPC behavior needed to account for both immediate utility and the emotional context of the relationship.",
+        "Player choices and prior interactions needed to influence future NPC decisions in a maintainable way.",
+      ],
+      solutions: [
+        "Combined Utility AI action scoring with PAD emotional state to make NPC responses more context-sensitive.",
+        "Stored NPC-player history and authored response curves in ScriptableObjects so the system could be tuned without rewriting core logic.",
+      ],
+    },
+  },
+];
+
+function getProjectPath(slug: string): ProjectPageId {
+  return `/project/${slug}`;
+}
+
 function getPageFromHash() {
   const rawHash = window.location.hash.replace(/^#/, "");
 
-  if (rawHash === "/portfolio" || rawHash === "/resume" || rawHash === "/contact") {
+  if (rawHash === "/portfolio" || rawHash === "/resume" || rawHash === "/contact" || rawHash.startsWith("/project/")) {
     return rawHash;
   }
 
@@ -79,7 +226,7 @@ function PageShell({
   children,
   action,
 }: {
-  title: string;
+  title: React.ReactNode;
   eyebrow: string;
   children: React.ReactNode;
   action?: React.ReactNode;
@@ -95,6 +242,42 @@ function PageShell({
       </div>
       {children}
     </section>
+  );
+}
+
+function ProjectCard({ project, onNavigate }: { project: Project; onNavigate: (href: PageId) => void }) {
+  return (
+    <SurfaceCard className="grid gap-5 2xl:p-8">
+      <div className="aspect-[4/3] overflow-hidden rounded-[1.4rem] bg-slate-100">
+        <img alt={`${project.title} preview`} className="h-full w-full object-cover" src={project.image} />
+      </div>
+      <div className="grid gap-3">
+        <h2 className="font-['Camilafont'] text-[clamp(1.75rem,1.6vw,2.35rem)] leading-tight text-slate-950">{project.title}</h2>
+        <p className="text-slate-600">{project.description}</p>
+        <div className="flex items-center justify-between gap-3 pt-1">
+          <div className="flex flex-wrap gap-2">
+            {project.links.map((link) => (
+              <a
+                key={`${project.title}-${link.label}`}
+                href={link.href}
+                className="rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                download={link.isDownload}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <a
+            href={project.learnMoreUrl ?? `#${getProjectPath(project.slug)}`}
+            aria-label={`Learn more about ${project.title}`}
+            title="Learn more"
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-purple-600 text-white transition hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
+          >
+            <ArrowUpRight size={20} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </SurfaceCard>
   );
 }
 
@@ -127,11 +310,12 @@ function SurfaceCard({ children, className = "", style }: { children: React.Reac
 
 
 
-function HomePage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
+function HomePage() {
   const catModelUrl = new URL('../assets/cat02.fbx', import.meta.url).href
 
- return (
-  <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-start gap-8 md:grid-cols-2 2xl:max-w-7xl"> 
+  return (
+  <div className="mx-auto grid w-full max-w-6xl gap-14 2xl:max-w-7xl">
+    <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
     
     {/* LEFT COLUMN: Groups the text card and the 3D model together */}
     <div className="grid grid-cols-1 gap-8">
@@ -169,7 +353,8 @@ function HomePage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
       </div> 
     </SurfaceCard>
 
-  </div> 
+    </div>
+  </div>
 );
 
 
@@ -177,102 +362,112 @@ function HomePage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
     
 }
 
-function PortfolioPage() {
-  const projects: Array<{
-    title: string;
-    description: string;
-    image: string;
-    links: PortfolioLink[];
-  }> = [
-    {
-      title: "Path of Anu, Zodiac Inspired VR Puzzle Solving Experience",
-      description:
-        "Unity VR experience where you cast spells in real time using hand gestures. Path of Anu is a VR spellcasting experience in which players draw magical sigils in real time using XR controls, designed for the Meta Quest 3 and Meta Quest 3 controllers.",
-      image: PathAnuPic,
-      links: [
-        { label: "github", href: "https://github.com/BrennanAndruss/PathOfAnu",
-          isDownload: false // Add this flag
-         },
-        { label: "video", href: "https://youtu.be/PUcehc885bM",
-          isDownload: false // Add this flag
-         },
-      ],
-    },
-    {
-      title: "CMYKingdom, Custom OpenGL Engine for a 3d Platformer Game",
-      description:
-        "OpenGL 3D platformer game where the main quest is to explore the world to collect cyan, magenta, and yellow crystals scattered throughout the land to restore color to the kingdom!",
-      image: CMYKingdomPic,
-      links: [
-        { label: "github/website", href: "https://github.com/BrennanAndruss/CMYKingdom", 
-          isDownload: false // Add this flag
-        },
-      ],
-    },
-    {
-      title: "SLOme, NPC-player interaction system",
-      description:
-        "NPC interaction system built by integrating Utility AI and PAD emotional model, also powered by scriptable objects (data) that holds information about each NPC's personality type (MBTI) and love languages. Built with the intention to drive more emotionally nuanced NPC interactions and player choices in games.",
-      image: RomanceSystemPic,
-      links: [{
-        label: "paper", 
-        href: PAPER_DOWNLOAD_URL,
-        isDownload: true // Add this flag,
-    },
-    {
-      label: "github",
-      href: "https://github.com/agrow/slome",
-      isDownload: false // Add this flag
-    }
-  
-  
-  ]
-    
-    },
-    {
-      title: "Ocean Site One, Environmental Awareness VR Experience",
-      description:
-        "A VR minigame where the player must deliver and perserve fish eggs againts predators. Set in the shores of Santa Barbara where oil rigs are present and the sea life coexists with these structures.",
-      image: OSOgif,
-      links: [
-        { label: "website", href: "https://laes.calpoly.edu/OSOprojects",
-          isDownload: false // Add this flag
-         },
-      ],
-    }
-  ];
-
+function PortfolioPage({ onNavigate }: { onNavigate: (href: PageId) => void }) {
   return (
     <PageShell
       eyebrow="portfolio"
       title={<span style={{ color: SITE_THEME.fontColor2 }}>selected work</span>}
       action={<p className="max-w-sm text-sm text-slate-500">Contact me if you have any questions about these projects!</p>}
     >
-      <div className="grid gap-6 lg:grid-cols-3">
-        {projects.map((project) => (
-          <SurfaceCard key={project.title} className="grid gap-5 2xl:p-8">
-            <div className="aspect-[4/3] overflow-hidden rounded-[1.4rem] bg-slate-100">
-              <img alt="portfolio preview" className="h-full w-full object-cover" src={project.image} />
-            </div>
-            <div className="grid gap-3">
-              <h2 className="font-['Camilafont'] text-[clamp(1.75rem,1.6vw,2.35rem)] leading-tight text-slate-950">{project.title}</h2>
-              <p className="text-slate-600">{project.description}</p>
-              <div className="flex flex-wrap gap-2 pt-1">
-                {project.links.map((link) => (
-                  <a
-                    key={`${project.title}-${link.label}`}
-                    href={link.href}
-                    className="rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
-                    download={link.isDownload}
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
+      <div className="grid gap-6 lg:grid-cols-2">
+        {PROJECTS.map((project) => <ProjectCard key={project.slug} project={project} onNavigate={onNavigate} />)}
+      </div>
+    </PageShell>
+  );
+}
+
+function ProjectDetailPage({ project, onNavigate }: { project: Project; onNavigate: (href: PageId) => void }) {
+  if (project.previewUrl) {
+    return (
+      <section className="mx-auto grid w-full max-w-6xl gap-6">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="font-['Camilafont'] text-3xl text-slate-200">view preview</p>
+          <button
+            type="button"
+            onClick={() => onNavigate("/portfolio")}
+            className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700"
+          >
+            <ArrowLeft size={16} aria-hidden="true" />
+            back to portfolio
+          </button>
+        </div>
+        <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <SurfaceCard className="overflow-hidden p-0">
+            <iframe
+              title={`${project.title} paper preview`}
+              className="h-[min(78vh,900px)] w-full border-0 bg-white"
+              src={`${project.previewUrl}#view=FitH`}
+            />
+          </SurfaceCard>
+          <SurfaceCard className="grid content-start gap-4">
+            <p className="font-['Camilafont'] text-3xl text-slate-950">Overview</p>
+            <p className="leading-8 text-slate-600">{project.detailDescription}</p>
+            <div className="flex flex-wrap gap-2 pt-2">
+              {project.links.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  download={link.isDownload}
+                  className="rounded-full bg-slate-950 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white"
+                >
+                  {link.label}
+                </a>
+              ))}
             </div>
           </SurfaceCard>
-        ))}
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <PageShell eyebrow="project details" title={<span className="text-slate-200">{project.title}</span>} action={<button type="button" onClick={() => onNavigate("/portfolio")} className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white/80 px-4 py-2 text-sm font-semibold text-slate-700"><ArrowLeft size={16} aria-hidden="true" /> back to portfolio</button>}>
+      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <SurfaceCard className="overflow-hidden p-0">
+          {project.previewUrl ? (
+            <iframe
+              title={`${project.title} paper preview`}
+              className="h-[520px] w-full border-0 bg-white"
+              src={`${project.previewUrl}#view=FitH`}
+            />
+          ) : (
+            <img alt={`${project.title} detail`} className="h-full min-h-[360px] w-full object-cover" src={project.image} />
+          )}
+        </SurfaceCard>
+        <SurfaceCard className="grid content-start gap-4">
+          <p className="font-['Camilafont'] text-3xl text-slate-950">Overview</p>
+          <p className="leading-8 text-slate-600">{project.detailDescription}</p>
+          <div className="flex flex-wrap gap-2 pt-2">
+            {project.links.map((link) => <a key={link.label} href={link.href} download={link.isDownload} className="rounded-full bg-slate-950 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white">{link.label}</a>)}
+          </div>
+        </SurfaceCard>
       </div>
+      <section className="grid gap-6" aria-labelledby="project-notes-heading">
+        <h2 id="project-notes-heading" className="font-['Camilafont'] text-4xl text-slate-200">project notes and images</h2>
+        <div className="grid gap-6 md:grid-cols-3">
+          {[0, 1, 2].map((slot) => (
+            <div key={slot} className="grid min-h-56 place-items-center rounded-[2rem] border-2 border-dashed border-purple-300 bg-white/50 p-6 text-center text-sm text-slate-500">
+              {project.detailImages[slot] ? <img alt={`${project.title} gallery ${slot + 1}`} className="h-full w-full object-cover" src={project.detailImages[slot]} /> : `Add project image ${slot + 1} here`}
+            </div>
+          ))}
+        </div>
+        <SurfaceCard>
+          <p className="font-['Camilafont'] text-3xl text-slate-950">Notes about project:</p> 
+          <p className="mt-1 leading-normal text-slate-680">My role: {project.notes.role}</p>
+          <div className="mt-2">
+            <p className="leading-normal font-medium text-slate-680">Problems:</p>
+            <ul className="list-inside list-disc pl-4 leading-normal text-slate-680">
+              {project.notes.problems.map((problem) => <li key={problem}>{problem}</li>)}
+            </ul>
+          </div>
+          <div className="mt-2">
+            <p className="leading-normal font-medium text-slate-680">Solutions:</p>
+            <ul className="list-inside list-disc pl-4 leading-normal text-slate-680">
+              {project.notes.solutions.map((solution) => <li key={solution}>{solution}</li>)}
+            </ul>
+          </div>
+        </SurfaceCard>
+      </section>
     </PageShell>
   );
 }
@@ -287,7 +482,7 @@ function ResumePage() {
       <div className="mx-auto grid max-w-4xl gap-6">
         <SurfaceCard className="overflow-hidden p-0">
           <div className="bg-slate-950 p-6 text-white md:p-8">
-            <p className="mt-3 max-w-2xl text-lg leading-8 text-white/80">download area:</p>
+            <p className="mt-3 max-w-2xl text-lg leading-8 text-white/80"></p>
             <p className="mt-3 max-w-2xl text-lg leading-8 text-white/80">
               Resume updated for summer 2026!
             </p>
@@ -343,7 +538,6 @@ function ContactPage() {
     <PageShell
       eyebrow="contact me"
       title={<span style= {{color: SITE_THEME.fontColor2}}>let's talk :D</span>}
-      action={<p className="max-w-sm text-sm text-slate-500">Use the form or email me directly at {CONTACT_EMAIL}.</p>}
     >
       <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <SurfaceCard>
@@ -411,7 +605,6 @@ export default function App() {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <button type="button" onClick={() => navigate("/")} className="text-left">
               <p className="font-['Camilafont'] text-2xl leading-none">camila's website</p>
-              <p className="text-sm text-slate-500">welcome</p>
             </button>
             <nav className="flex flex-wrap gap-2">
               {NAV_ITEMS.map((item) => (
@@ -423,8 +616,12 @@ export default function App() {
 
         <main className="flex-1 py-8 md:py-10">
           <div className="grid gap-8">
-            {page === "/" && <HomePage onNavigate={navigate} />}
-            {page === "/portfolio" && <PortfolioPage />}
+            {page === "/" && <HomePage />}
+            {page === "/portfolio" && <PortfolioPage onNavigate={navigate} />}
+            {page.startsWith("/project/") && (() => {
+              const project = PROJECTS.find((item) => getProjectPath(item.slug) === page);
+              return project ? <ProjectDetailPage project={project} onNavigate={navigate} /> : <PortfolioPage onNavigate={navigate} />;
+            })()}
             {page === "/resume" && <ResumePage />}
             {page === "/contact" && <ContactPage />}
           </div>
